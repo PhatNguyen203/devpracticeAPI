@@ -6,6 +6,10 @@ dotenv.config({ path: "./config/config.env" });
 
 const app = express();
 
+app.get("/", (req, res) => {
+  res.send("this is back-end site");
+});
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(
