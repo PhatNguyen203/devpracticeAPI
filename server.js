@@ -1,30 +1,16 @@
-const express = require("express");
-const dotenv = require("dotenv");
+const express = require('express');
+const dotenv = require('dotenv');
+
+//load bootcamps routes file
+const bootcamps = require('./routes/bootcamps');
 
 //load env config variables
-dotenv.config({ path: "./config/config.env" });
+dotenv.config({ path: './config/config.env' });
 
 const app = express();
 
-app.get("/api/v1/bootcamps", (req, res) => {
-  res.status(200).json({success:true, msg:"display all bootcamps"});
-});
-
-app.get("/api/v1/bootcamps/:id",(req,res) => {
-  res.status(200).json({success:true, msg:`display the bootcamp with id ${req.params.id}`});
-})
-
-app.post("/api/v1/bootcamps",(req,res) => {
-  res.status(200).json({success:true, msg:"insert a new bootcamp"});
-})
-
-app.put("/api/v1/bootcamps/:id",(req,res) => {
-  res.status(200).json({success:true, msg:`update the bootcamp with id ${req.params.id}`});
-})
-
-app.delete("/api/v1/bootcamps/:id",(req,res) => {
-  res.status(200).json({success: true, msg:`delete the bootcamp with id ${req.params.id}`});
-})
+//mount routers
+app.use('/api/v1/bootcamps', bootcamps);
 
 const PORT = process.env.PORT || 5000;
 
